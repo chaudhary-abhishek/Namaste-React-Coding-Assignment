@@ -1,0 +1,27 @@
+{
+  "name": "namaste-react-coding-assignment",
+  "version": "1.0.0",
+  "description": "This is Namanste React Coding Assignments",
+  "scripts": {
+    "start":"parcel index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaudhary-abhishek/Namaste-React-Coding-Assignment.git"
+  },
+  "author": "Abhishek choudhary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaudhary-abhishek/Namaste-React-Coding-Assignment/issues"
+  },
+  "homepage": "https://github.com/chaudhary-abhishek/Namaste-React-Coding-Assignment#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
