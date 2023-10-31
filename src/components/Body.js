@@ -1,5 +1,6 @@
 import RestaurentCard from "./RestaurentCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import FakeUI from "./Shimmer";
 
 const Body = () => {
@@ -25,6 +26,7 @@ const Body = () => {
     setFilteredRestaurent(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
   };
 
   return filteredRestaurent.length === 0 ? (
@@ -69,7 +71,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurent.map((restaurent) => (
-          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          <RestaurentCard  key={restaurent.info.id} resData={restaurent} />
         ))}
       </div>
     </div>
