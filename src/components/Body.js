@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 import FakeUI from "./Shimmer";
 
 const Body = () => {
+  
   const [listOfRestaurents, setListOfRestaurents] = useState([]); // here we call listOfRestaurents as state variabel
   const [uiInput, setUiInput] = useState("");
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
-
+ 
   useEffect(() => {
     // console.log("useEffect rendered ");
     fetchData();
     // const restaurentData = await completeData.data.card.gridElements.infoWithStyle.restaurants;
-  }, []);
+  },[]);
 
   const fetchData = async () => {
     const data = await fetch(
