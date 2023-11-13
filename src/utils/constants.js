@@ -6,3 +6,5 @@ export const MENU_LNK = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_M
 
 export const MENU_IMG_LNK = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
 
+export const RESLIST_LNK = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6095544&lng=77.3302981&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+

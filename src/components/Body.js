@@ -1,25 +1,20 @@
 import RestaurentCard from "./RestaurentCard";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import FakeUI from "./Shimmer";
+import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { RESLIST_LNK } from "../utils/constants";
 
 const Body = () => {
-  
-  const [listOfRestaurents, setListOfRestaurents] = useState([]); // here we call listOfRestaurents as state variabel
+  const [listOfRestaurents, setListOfRestaurents] = useState([]); // here we call listOfRestaurents as state variable because it holds the state of the component
   const [uiInput, setUiInput] = useState("");
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
-  const onlineStatus = useOnlineStatus();
+  const onlineStatus = useOnlineStatus(); //calling custom hook to get the online status of the user
   useEffect(() => {
-    // console.log("useEffect rendered ");
     fetchData();
-    // const restaurentData = await completeData.data.card.gridElements.infoWithStyle.restaurants;
-  },[]);
+  }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6095544&lng=77.3302981&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RESLIST_LNK);
     const json = await data.json();
     console.log(json);
     setListOfRestaurents(
@@ -28,14 +23,18 @@ const Body = () => {
     setFilteredRestaurent(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-
   };
 
-  if(onlineStatus===false){
-    return <h2>You don't have internet connection.Please connect to intenet and try again</h2>;
+  if (onlineStatus === false) {
+    return (
+      <h2>
+        You don't have internet connection.Please connect to intenet and try
+        again
+      </h2>
+    );
   }
   return filteredRestaurent.length === 0 ? (
-    <FakeUI />
+    <Shimmer />
   ) : (
     <div className="body">
       <div className="filter">
@@ -76,7 +75,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurent.map((restaurent) => (
-          <RestaurentCard  key={restaurent.info.id} resData={restaurent} />
+          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
         ))}
       </div>
     </div>

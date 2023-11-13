@@ -2,6 +2,7 @@ import { CDN_LNK } from "../utils/constants.js";
 import { Link } from "react-router-dom";
 
 const RestaurentCard = (props) => {
+  
   const { resData } = props;
   const { cloudinaryImageId, name, avgRating, sla, costForTwo, cuisines } =
     resData?.info;

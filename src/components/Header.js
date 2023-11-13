@@ -7,6 +7,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   let [btnLogin, setBtnLogin] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  
   return (
     <div className="header">
       <div className="logo-container">
