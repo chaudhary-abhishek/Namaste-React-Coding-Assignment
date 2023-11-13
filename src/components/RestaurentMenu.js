@@ -1,34 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {MENU_LNK} from "../utils/constants.js";
-import MenuCard  from "./MenuCard.js";
+import { MENU_LNK } from "../utils/constants.js";
+import MenuCard from "./MenuCard.js";
 import Shimmer from "./Shimmer";
-
+import useRestaurentMenu from "../utils/useRestaurentMenu.js";
 
 const RestaurentMenu = () => {
   // const params = useParams();
   // console.log(params);
+  const { id } = useParams();
 
-  const [menu, setMenu] = useState(null);
-  const {id} = useParams();
-  useEffect(() => {
-    fetchRestaurentMenu();
-  }, []);
-
-  const fetchRestaurentMenu = async () => {
-    const menuInfo = await fetch(MENU_LNK+id);
-    const json = await menuInfo.json();
-    console.log(json);
-    setMenu((menu) => {
-      return (menu =
-        json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-          ?.card?.title == "Top Picks"
-          ? json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
-              ?.card?.card?.itemCards
-          : json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-              ?.card?.card?.itemCards);
-    });
-  };
+  const menu = useRestaurentMenu(id);
 
   if (menu == null) {
     return <Shimmer />;
@@ -38,9 +20,8 @@ const RestaurentMenu = () => {
       <h1>This is the menu of this restaurent,</h1>
 
       {menu.map((item) => (
-           <MenuCard  key={item.card.info.id}  menuData = {item} />
-      )
-      )}
+        <MenuCard key={item.card.info.id} menuData={item} />
+      ))}
     </div>
   );
 };

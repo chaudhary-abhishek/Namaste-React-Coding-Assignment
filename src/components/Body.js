@@ -2,13 +2,14 @@ import RestaurentCard from "./RestaurentCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FakeUI from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   
   const [listOfRestaurents, setListOfRestaurents] = useState([]); // here we call listOfRestaurents as state variabel
   const [uiInput, setUiInput] = useState("");
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
- 
+  const onlineStatus = useOnlineStatus();
   useEffect(() => {
     // console.log("useEffect rendered ");
     fetchData();
@@ -30,6 +31,9 @@ const Body = () => {
 
   };
 
+  if(onlineStatus===false){
+    return <h2>You don't have internet connection.Please connect to intenet and try again</h2>;
+  }
   return filteredRestaurent.length === 0 ? (
     <FakeUI />
   ) : (
