@@ -37,9 +37,30 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
+      <div className="filter ml-2">
+        <input
+          className="m-4 p-1 border border-solid border-black rounded-md"
+          value={uiInput}
+          onChange={(event) => {
+            setUiInput(event.target.value);
+            // console.log(uiInput);
+          }}
+        />
+        {/* {console.log(uiInput)} */}
         <button
-          className="btn-filter"
+          className="bg-green-200 p-2 m-1 rounded-md"
+          onClick={() => {
+            const filteredData = listOfRestaurents.filter((restaurent) =>
+              restaurent.info.name.toUpperCase().includes(uiInput.toUpperCase())
+            );
+            setFilteredRestaurent(filteredData);
+          }}
+        >
+          search
+        </button>
+
+        <button
+          className="bg-green-200 p-2 m-2 rounded-md"
           onClick={() => {
             const filteredListOfRestaurents = listOfRestaurents.filter(
               (restaurent) => restaurent.info.avgRating > 4.2
@@ -51,29 +72,8 @@ const Body = () => {
         >
           Top Restaurants
         </button>
-
-        <input
-          className="search"
-          value={uiInput}
-          onChange={(event) => {
-            setUiInput(event.target.value);
-            // console.log(uiInput);
-          }}
-        />
-        {/* {console.log(uiInput)} */}
-        <button
-          className="search-btn"
-          onClick={() => {
-            const filteredData = listOfRestaurents.filter((restaurent) =>
-              restaurent.info.name.toUpperCase().includes(uiInput.toUpperCase())
-            );
-            setFilteredRestaurent(filteredData);
-          }}
-        >
-          search
-        </button>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap justify-evenly">
         {filteredRestaurent.map((restaurent) => (
           <RestaurentCard key={restaurent.info.id} resData={restaurent} />
         ))}
