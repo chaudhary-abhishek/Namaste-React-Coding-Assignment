@@ -25,4 +25,17 @@ const RestaurentCard = (props) => {
   );
 };
 
+export const RestaurantCardFree = (RestaurentCard)=>{
+
+  return (prop)=>{
+    return(
+    <div>
+    <label className="absolute bg-orange-400 text-white p-2 rounded-lg" >Free Delivery</label>
+    <RestaurentCard {...prop} />
+    </div>
+    )
+    
+  }
+}
+
 export default RestaurentCard;

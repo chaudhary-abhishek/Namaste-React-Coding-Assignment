@@ -14,7 +14,7 @@ const MenuCard = (props) => {
           <p>{description}</p>
         </div>
         <div className="menuImage w-1/2 my-5">
-          <img className="w-1/2" src={MENU_IMG_LNK + imageId} />
+          <img className="w-1/3" src={MENU_IMG_LNK + imageId} />
         </div>
       </div>
     </div>

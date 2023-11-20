@@ -1,4 +1,4 @@
-import RestaurentCard from "./RestaurentCard";
+import RestaurentCard, {RestaurantCardFree} from "./RestaurentCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -9,10 +9,11 @@ const Body = () => {
   const [uiInput, setUiInput] = useState("");
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
   const onlineStatus = useOnlineStatus(); //calling custom hook to get the online status of the user
+  const RestaurantCardWithFreeDelivery = RestaurantCardFree(RestaurentCard);
   useEffect(() => {
     fetchData();
   }, []);
-
+  // console.log(listOfRestaurents[0].info.type);
   const fetchData = async () => {
     const data = await fetch(RESLIST_LNK);
     const json = await data.json();
@@ -75,7 +76,10 @@ const Body = () => {
       </div>
       <div className="res-container flex flex-wrap justify-evenly">
         {filteredRestaurent.map((restaurent) => (
-          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          
+            restaurent.info.type === 'F'?<RestaurantCardWithFreeDelivery key={restaurent.info.id} resData={restaurent} /> : <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          
+          // <RestaurentCard key={restaurent.info.id} resData={restaurent} />
         ))}
       </div>
     </div>
