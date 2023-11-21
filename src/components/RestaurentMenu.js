@@ -11,7 +11,7 @@ const RestaurentMenu = () => {
   const { id } = useParams();
 
   const menu = useRestaurentMenu(id);
-
+  //console.log(menu);
   if (menu == null) {
     return <Shimmer />;
   }
@@ -20,7 +20,7 @@ const RestaurentMenu = () => {
       <h1>This is the menu of this restaurent,</h1>
 
       {menu.map((item) => (
-        <MenuCard key={item.card.info.id} menuData={item} />
+        <MenuCard key={item.card.card.title} menuData={item} />
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import RestaurentCard, {RestaurantCardFree} from "./RestaurentCard";
+import RestaurentCard, { RestaurantCardFree } from "./RestaurentCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -10,6 +10,7 @@ const Body = () => {
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
   const onlineStatus = useOnlineStatus(); //calling custom hook to get the online status of the user
   const RestaurantCardWithFreeDelivery = RestaurantCardFree(RestaurentCard);
+  //console.log(filteredRestaurent);
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,11 +20,30 @@ const Body = () => {
     const json = await data.json();
     console.log(json);
     setListOfRestaurents(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      ((filteredRestaurent)=>{
+        return(
+          filteredRestaurent=
+          json?.data?.cards[2]?.card?.card?.gridElements != undefined
+            ? json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants
+            : json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants)
+        }
+        ))
+
     setFilteredRestaurent(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      ((filteredRestaurent)=>{
+        return(
+          filteredRestaurent=
+          json?.data?.cards[2]?.card?.card?.gridElements != undefined
+            ? json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants
+            : json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants)
+        }
+        ))
+      
+   
   };
 
   if (onlineStatus === false) {
@@ -75,12 +95,18 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container flex flex-wrap justify-evenly">
-        {filteredRestaurent.map((restaurent) => (
-          
-            restaurent.info.type === 'F'?<RestaurantCardWithFreeDelivery key={restaurent.info.id} resData={restaurent} /> : <RestaurentCard key={restaurent.info.id} resData={restaurent} />
-          
+        {filteredRestaurent.map((restaurent) =>
+          restaurent.info.type === "F" ? (
+            <RestaurantCardWithFreeDelivery
+              key={restaurent.info.id}
+              resData={restaurent}
+            />
+          ) : (
+            <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          )
+
           // <RestaurentCard key={restaurent.info.id} resData={restaurent} />
-        ))}
+        )}
       </div>
     </div>
   );
