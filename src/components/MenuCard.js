@@ -16,9 +16,9 @@ const MenuCard = (props) => {
   //console.log(itemCards);
   // console.log(itemCards[0].card?.info?.id);
   return (
-    <div className="my-16 p-4">
-      <hr />
-      <div className="menu-card my-4 mx-auto w-9/12 shadow-lg rounded-lg">
+    <div className="my-4 p-4">
+      
+      <div className="menu-card my-1 mx-auto w-9/12 shadow-lg rounded-lg">
         {/* accordian header */}
         <div
           className="flex justify-between cursor-pointer p-4"
