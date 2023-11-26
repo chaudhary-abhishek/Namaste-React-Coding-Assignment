@@ -6,6 +6,8 @@ import Shimmer from "./Shimmer";
 import useRestaurentMenu from "../utils/useRestaurentMenu.js";
 
 const RestaurentMenu = () => {
+  const [showIndex, setShowIndex] = useState(null);
+  //const [showAccordian, setShowAccordian] = useState(false);
   // const params = useParams();
   // console.log(params);
   const { id } = useParams();
@@ -34,8 +36,8 @@ const RestaurentMenu = () => {
       </div>
 
       {/* we are mapping over different category of menu like recommended , what's new things like that */}
-      {menu.map((item) => (
-        <MenuCard key={item.card.card.title} menuData={item} />
+      {menu.map((item, index) => (
+        <MenuCard key={item.card.card.title} showAccordian={index==showIndex?true:false} setShowIndex = {()=>setShowIndex(index)} menuData={item} />
       ))}
     </div>
   );

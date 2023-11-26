@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import { CDN_LNK } from "../utils/constants.js";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext.js";
 
 const RestaurentCard = (props) => {
   
   const { resData } = props;
   const { cloudinaryImageId, name, avgRating, sla, costForTwo, cuisines } =
     resData?.info;
+    const {loggedInUser} = useContext(UserContext);
   return (
     <div className="w-72 h-[450px] p-4 mb-8 bg-gray-300 rounded-md hover:shadow-2xl">
 
@@ -20,6 +23,7 @@ const RestaurentCard = (props) => {
       <h4>ETA {sla.deliveryTime} minutes</h4>
       <h4>{costForTwo}</h4>
       <h4>{cuisines.join(", ")}</h4>
+      <h4 className="font-bold">User : {loggedInUser}</h4>
       </Link>
     </div>
   );

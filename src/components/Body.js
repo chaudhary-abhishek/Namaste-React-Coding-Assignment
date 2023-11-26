@@ -1,10 +1,12 @@
 import RestaurentCard, { RestaurantCardFree } from "./RestaurentCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { RESLIST_LNK } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
+  const {setUserName, loggedInUser} = useContext(UserContext);
   const [listOfRestaurents, setListOfRestaurents] = useState([]); // here we call listOfRestaurents as state variable because it holds the state of the component
   const [uiInput, setUiInput] = useState("");
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
@@ -93,6 +95,8 @@ const Body = () => {
         >
           Top Restaurants
         </button>
+        UserName :  
+        <input value = {loggedInUser} onChange={(e)=>setUserName(e.target.value)} className="border p-1 border-black"/>
       </div>
       <div className="res-container flex flex-wrap justify-evenly">
         {filteredRestaurent.map((restaurent) =>

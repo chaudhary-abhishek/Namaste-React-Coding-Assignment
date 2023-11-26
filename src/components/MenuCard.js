@@ -4,14 +4,17 @@ import ItemCategoryCard from "./ItemCategoryCard.js";
 
 
 const MenuCard = (props) => {
+
+  const { menuData, showAccordian, setShowIndex} = props;
  // Here we are getting single single menu category(first we will get recommended and so on)
-  const [showAccordian, setShowAccordian] = useState(false);
-  const { menuData } = props;
+ // const [showAccordian, setShowAccordian] = useState(false);
+  
   //console.log(props);
   const menuItems = menuData?.card?.card?.itemCards;
 
   const accordianHandler = () => {
-    setShowAccordian(!showAccordian);
+    setShowIndex();
+    //setShowAccordian();
   };
   //console.log(itemCards);
   // console.log(itemCards[0].card?.info?.id);
