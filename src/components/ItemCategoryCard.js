@@ -1,9 +1,16 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 import { MENU_IMG_LNK } from "../utils/constants";
+
 
 const ItemCategoryCard = (props) => {
   // Here we are getting individual menu item
   const { data } = props;
-  //console.log(data);
+  console.log(data);
+  const dispatch = useDispatch();
+  const addItemHandler = (cartItem)=>{
+    dispatch(addItem(cartItem));
+  }
 
   return (
     <div className="p-4">
@@ -20,7 +27,7 @@ const ItemCategoryCard = (props) => {
         </div>
         <div className="p-2">
           <div className="text-green-700 bg-white w-14 p-2 absolute ml-4 shadow-lg rounded-lg">
-            <button className="text-center">Add+</button>
+            <button className="text-center" onClick={()=>addItemHandler(data)}>Add+</button>
           </div>
 
           <img src={MENU_IMG_LNK + data.card.info.imageId} />

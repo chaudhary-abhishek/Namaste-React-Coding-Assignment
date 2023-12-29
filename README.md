@@ -23,3 +23,12 @@ Footer
 # useEffect
 - It is one more utility function provided by react to render something after the rendering of component is done.
 - It takes two argument , one is call back function and other is dependency array.
+
+
+# Redux
+- Install @reduxjs/toolkit and react-redux
+- Let's create or build our store
+- Connect our store to our app (hope you remember react-redux)
+- Create slice in the store (cartSlice in our case)
+- dispatch an action
+- read the data from store (using Selector)

@@ -12,6 +12,7 @@ const Body = () => {
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
   const onlineStatus = useOnlineStatus(); //calling custom hook to get the online status of the user
   const RestaurantCardWithFreeDelivery = RestaurantCardFree(RestaurentCard);
+  console.log(uiInput);
   //console.log(filteredRestaurent);
   useEffect(() => {
     fetchData();
