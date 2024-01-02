@@ -19,7 +19,7 @@ const Header = () => {
       </div>
       <div className="nav-container">
         <ul className="flex">
-          <li className="p-4">
+          <li className="p-4 hidden md:block">
             Online Status : {onlineStatus?"🟢":"🔴"}
           </li>
           <li  className="p-4">
@@ -31,12 +31,12 @@ const Header = () => {
           <li  className="p-4">
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="p-4">
+          <li className="p-4 hidden md:block">
             <Link to="/grocery">Grocery</Link>
           </li>
           <li className="p-4 font-bold text-xl"><Link to="/cart">Cart - ({cartItems.length})</Link></li>
           <button
-            className="btn-login"
+            className="btn-login hidden md:block"
             onClick={() => {
               btnLogin === "Login"
                 ? setBtnLogin("Logout")
@@ -46,7 +46,7 @@ const Header = () => {
             {btnLogin}
           </button>
 
-          <li className="p-4 font-bold">
+          <li className="p-4 font-bold hidden md:block">
            {loggedInUser}
           </li>
         </ul>
